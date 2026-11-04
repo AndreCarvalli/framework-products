@@ -35,11 +35,11 @@ export default function ShowAllPage() {
     ])
 
     // Cart Use State
-    const [cart, setCart]=useState([])
+    const [cart, setCart] = useState([])
 
     // Add To Cart Function
     function addToCart(id) {
-        const product = products.find((item)=> item.id === id)
+        const product = products.find((item) => item.id === id)
         setCart([...cart, product])
     }
 
@@ -76,16 +76,22 @@ export default function ShowAllPage() {
 
             {/* cart section on the right of page */}
             <section className="cart-container">
-                <h3>Cart</h3>              
+                <h3>Cart</h3>
                 <p>Cart Items</p>
-                <ul>
+                <div>
                     {
-                        cart.map((item)=>{
-                            return <li>{item.title} <i onClick={() => removeFromCart(item.id)} class="bi bi-trash"> </i> 
-                            </li>
-                        })
+                        cart.map((item) => (
+                            <div className="card-cart" style={{ width: "100%" }}>
+                                <img src={item.image} className="card-img" alt="..." />
+                                <div className="card-body">
+                                    <h5 className="card-title">{item.title}</h5>
+                                    <p className="card-text">Starting at {item.price}</p>
+                                </div>
+                                <i onClick={() => removeFromCart(item.id)} className="bi bi-trash"> </i>
+                            </div>
+                        ))
                     }
-                </ul>
+                </div>
             </section>
         </div>
     )
