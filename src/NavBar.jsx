@@ -1,7 +1,7 @@
 export default function NavBar(){
     return (
         <div>
-            <nav className="navbar sm:navbar-expand bg-1 fg-2 sticky-top">
+            <nav className="navbar sm:navbar-expand bg-1 fg-2 fixed-top">
                 <div className="container-fluid">
                     <a className="navbar-brand" href="#">Navbar</a>
                     <button className="btn-icon navbar-toggler" type="button" data-bs-toggle="drawer" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
