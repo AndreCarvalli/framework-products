@@ -3,6 +3,9 @@ import OnChange from "./OnChange"
 import Cards from "./Cards"
 export default function ShowAllPage() {
 
+ 
+//   const [array, setArray] = useState([])
+
     const [products, setProducts] = useState([
         {
             id: 1,
@@ -45,8 +48,15 @@ export default function ShowAllPage() {
 
     // Remove From Cart Function
     function removeFromCart(id) {
-        const updatedCart = cart.filter((item) => item.id !== id)
-        setCart(updatedCart)
+        const index = cart.findIndex((item)=> item.id === id)
+        if(index !== -1){
+            const updateCart = [...cart]
+            updateCart.splice(index,1)
+            setCart(updateCart)
+        }
+
+        // const updatedCart = cart.filter((item) => item.id !== id)
+        // setCart(updatedCart)
     }
     return (
         <div className="container-content">
