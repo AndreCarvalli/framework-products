@@ -4,8 +4,7 @@ import Cards from "./Cards"
 export default function ShowAllPage() {
 
  
-//   const [array, setArray] = useState([])
-
+// Const [array, setArray] = useState([])
     const [products, setProducts] = useState([
         {
             id: 1,
@@ -48,15 +47,16 @@ export default function ShowAllPage() {
 
     // Remove From Cart Function
     function removeFromCart(id) {
+        // Search for the id of the pressed item
         const index = cart.findIndex((item)=> item.id === id)
         if(index !== -1){
-            const updateCart = [...cart]
+            const updateCart = [...cart] //New Cart instance
             updateCart.splice(index,1)
             setCart(updateCart)
         }
 
-        // const updatedCart = cart.filter((item) => item.id !== id)
-        // setCart(updatedCart)
+    // const updatedCart = cart.filter((item) => item.id !== id)
+    // setCart(updatedCart)
     }
     return (
         <div className="container-content">
@@ -72,7 +72,7 @@ export default function ShowAllPage() {
             </section>
 
             {/* Content */}
-            <section className=" product-section d-flex flex-wrap gap-3 justify-content-flex-start">
+            <section className = " product-section d-flex flex-wrap gap-3 justify-content-flex-start">
                 {
                     products.map((product) => (
                         <Cards
