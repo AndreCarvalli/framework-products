@@ -27,6 +27,16 @@ body{
   width: 70px;
   height: 70px; 
 }
+.form-div{
+  padding: 16px;
+  border: 1px solid white;
+  text-align: center;
+}
+.form-element{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
 .cart-container{
   height: 100%;
   width: 360px;

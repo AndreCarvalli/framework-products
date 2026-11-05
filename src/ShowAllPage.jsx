@@ -3,7 +3,6 @@ import OnChange from "./OnChange"
 import Cards from "./Cards"
 export default function ShowAllPage() {
 
- 
 // Const [array, setArray] = useState([])
     const [products, setProducts] = useState([
         {
@@ -58,21 +57,98 @@ export default function ShowAllPage() {
     // const updatedCart = cart.filter((item) => item.id !== id)
     // setCart(updatedCart)
     }
+
+    
+    const [formData, setFormData] = useState({
+        id:"",
+        title:"",
+        price:"",
+        image:"",
+        isAvailable:"",
+    })
+
+    function handleOnChange(event){
+        setFormData({
+            ...formData, [event.target.name] : event.target.value
+        })
+    }
+
+    function handleSubmit(event){
+        event.preventDefault()
+        setProducts(
+            [
+                ...products,formData
+            ]
+        )
+    }
+
+    function handleSearch(event) {
+        console.log(`${event.target.name}: ${event.target.value}`);
+
+        const searchedItem = products.filter((product)=>{
+            return product.title.toLowerCase().includes(event.target.value.toLowerCase())
+        })
+
+        setProducts(searchedItem)
+        }
     return (
         <div className="container-content">
             {/* Side Navigation */}
             <section className="menu-container">
                 <div class="menu show position-static">
                     <span class="menu-text">Categories</span>
-                    <OnChange />
+
+                    {/*Search input field */}
+                     <input type="text" name="search" onChange={handleSearch} placeholder="Enter search term..."/>
+            
                     <a class="menu-item" href="#">Action</a>
                     <a class="menu-item" href="#">Another action</a>
                     <a class="menu-item" href="#">Something else here</a>
+
+                    <div className="form-div">
+                        <form className="form-element" onSubmit={handleSubmit}>
+                            <input 
+                                type="text"
+                                name="id" 
+                                value={formData.id}
+                                placeholder="Enter Id" 
+                                onChange={handleOnChange}
+                            />
+                            <input 
+                                name="title" 
+                                value={formData.title}
+                                placeholder="Enter Title" 
+                                onChange={handleOnChange}
+                            />
+                            <input 
+                                name="price" 
+                                value={formData.price}
+                                placeholder="Enter Price"
+                                onChange={handleOnChange} 
+                            />
+                            <input 
+                                name="image" 
+                                value={formData.image}
+                                placeholder="Paste Image Link" 
+                                onChange={handleOnChange}
+                            />
+                            <input 
+                                name="isAvailable" 
+                                value={formData.isAvailable}
+                                placeholder="Enter Description" 
+                                onChange={handleOnChange}
+                            />
+                            <button type="submit">Add Item</button>
+                        </form>
+                    </div>
                 </div>
+                
+                
             </section>
 
             {/* Content */}
             <section className = " product-section d-flex flex-wrap gap-3 justify-content-flex-start">
+                
                 {
                     products.map((product) => (
                         <Cards
