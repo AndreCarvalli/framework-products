@@ -1,0 +1,36 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "title": "Laptop 11 DIY Edition (Intel® Core™ Series 1)",
+      "price": "$99.99",
+      "image": "https://static.frame.work/vnhapdfuirbckad88ctfkwlb0hjg",
+      "isAvailable": true
+    },
+    {
+      "id": "2",
+      "title": "Framework Laptop 12 DIY Edition (Intel® Core™ Series 3)",
+      "price": "$50.99",
+      "image": "https://static.frame.work/fzas83nnokn5217ml32noztdtpta",
+      "isAvailable": false
+    },
+    {
+      "id": "3",
+      "title": "Framework Laptop 13 Pro DIY Edition (AMD Ryzen™ AI 300 Series)",
+      "price": "$45.99",
+      "image": "https://static.frame.work/yw64dst6sqdf46t5qjohh9p27oyc",
+      "isAvailable": true
+    },
+    {
+      "id": "4",
+      "title": "Framework Laptop 14 Pro DIY Edition (Intel® Core™ Series 5)",
+      "price": "$67.99",
+      "image": "https://static.frame.work/lww17r689wvgl74tji9p9w6xtp50",
+      "isAvailable": true
+    }
+  ],
+  "carts": [
+  
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
