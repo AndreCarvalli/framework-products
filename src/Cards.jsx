@@ -13,7 +13,7 @@ export default function Cards({product, addToCart}) {
                     product.isAvailable ? (
                        <button onClick={() => addToCart(product.id)} className="btn btn-primary"> Buy Now </button>
                     ) : (
-                        <button className = "btn btn-secondary disabled"> Out of Stock </button>
+                        <button className = "btn btn-warning disabled " style={{color:"red"}}> Out of Stock </button>
                     )
                 }    
             </div>

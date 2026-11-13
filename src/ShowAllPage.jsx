@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import OnChange from "./OnChange"
 import Cards from "./Cards"
 export default function ShowAllPage() {
 
@@ -7,13 +6,13 @@ export default function ShowAllPage() {
     const [products, setProducts] = useState([])
 
     //Fetching from db.json
-    useEffect(()=>{
-        fetch('http://localhost:3000/products')
-        .then(res=>res.json())
-        .then(data=>{
-            setProducts(data)
-        })
-    },[])
+    useEffect(() => {
+        fetch('http://localhost:4001/products')
+            .then(res => res.json())
+            .then(data => {
+                setProducts(data)
+            })
+    }, [])
 
 
     // Cart Use State
@@ -24,20 +23,20 @@ export default function ShowAllPage() {
     function addToCart(id) {
 
         const product = products.find((item) => item.id === id)
-    
         fetch('http://localhost:3000/carts', {
             method: "POST",
-            headers:{
+            headers: {
+                accept: "application/json",
                 "Content-Type": "application/json"
             },
-            body:JSON.stringify(product)
+            body: JSON.stringify(product)
         })
-        .then(res => res.json())
-        .then(data=>{
-            console.log(data); 
-            setCart(data) 
-        })
-       
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                // setCart(data) 
+            })
+
 
         // fetch('http://localhost:3000/carts')
         //     .then(res => res.json())
@@ -45,7 +44,7 @@ export default function ShowAllPage() {
         //          console.log(data); 
         //     })  
 
-    // setCart([...cart, product])
+        setCart([...cart, product])
     }
 
     // Remove From Cart Function
@@ -62,9 +61,6 @@ export default function ShowAllPage() {
         // setCart(updatedCart)
     }
 
-
-    // 
-
     const [formData, setFormData] = useState({
         id: "",
         title: "",
@@ -75,7 +71,7 @@ export default function ShowAllPage() {
 
     function handleOnChange(event) {
         setFormData({
-            ...formData, [event.target.name] : event.target.value //Adding another key:value pair in formData object
+            ...formData, [event.target.name]: event.target.value //Adding another key:value pair in formData object
         })
     }
 
@@ -98,20 +94,30 @@ export default function ShowAllPage() {
     return (
         <div className="container-content">
             {/* Side Navigation */}
-            <section className="menu-container">
-                <div class="menu show position-static">
-                    <span class="menu-text">Categories</span>
+            <aside className="menu-container">
+                <div className="menu show position-static">
 
                     {/*Search Input Field */}
-                    <input type="text" name="search" onChange={handleSearch} placeholder="Enter search term..." />
+                    <input className="search" type="text" name="search" onChange={handleSearch} placeholder= "Search ..." />
+                    <span className="menu-text">Categories</span>
 
-                    <a class="menu-item" href="#">Action</a>
-                    <a class="menu-item" href="#">Another action</a>
-                    <a class="menu-item" href="#">Something else here</a>
+                    <hr style={{border:"0.2px dashed gray"}}/>
+
+                    <a className="menu-item" active href="#">View All</a>
+                    <a className="menu-item" href="#">Framework Laptop</a>
+                    <a className="menu-item" href="#">Mainboards</a>
+                    <a className="menu-item" href="#">Expansion cards</a>
+                    <a className="menu-item" href="#">Memory Storage</a>
+                    <a className="menu-item" href="#">Keyboards</a>
+                    <a className="menu-item" href="#">Parts</a>
+                    <a className="menu-item" href="#">Customization</a>
+                    <a className="menu-item" href="#">Tools</a>
 
                     <div className="form-div">
-                        <form className="form-element" onSubmit = {handleSubmit}>
+                        <h5>Add New Product</h5>
+                        <form className="form-element" onSubmit={handleSubmit}>
                             <input
+                                className="form-input"
                                 type="text"
                                 name="id"
                                 value={formData.id}
@@ -119,24 +125,28 @@ export default function ShowAllPage() {
                                 onChange={handleOnChange}
                             />
                             <input
+                                className="form-input"
                                 name="title"
                                 value={formData.title}
                                 placeholder="Enter Title"
                                 onChange={handleOnChange}
                             />
                             <input
+                                className="form-input"
                                 name="price"
                                 value={formData.price}
                                 placeholder="Enter Price"
                                 onChange={handleOnChange}
                             />
                             <input
+                                className="form-input"
                                 name="image"
                                 value={formData.image}
                                 placeholder="Paste Image Link"
                                 onChange={handleOnChange}
                             />
                             <input
+                                className="form-input"
                                 name="isAvailable"
                                 value={formData.isAvailable}
                                 placeholder="Product is available"
@@ -148,11 +158,10 @@ export default function ShowAllPage() {
                 </div>
 
 
-            </section>
+            </aside>
 
             {/* Content */}
             <section className=" product-section d-flex flex-wrap gap-3 justify-content-flex-start">
-
                 {
                     products.map((product) => (
                         <Cards
@@ -166,7 +175,7 @@ export default function ShowAllPage() {
 
             {/* cart section on the right of page */}
             <section className="cart-container">
-                <h3>Cart</h3>
+                <h3>My Cart</h3>
                 <p>Cart Items</p>
                 <div>
                     {
